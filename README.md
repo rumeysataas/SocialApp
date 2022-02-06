@@ -1,4 +1,4 @@
-# sosyal_medya_uygulamasi
+# sosyal_medya_uygulamasi2
 
 A new Flutter project.
 
