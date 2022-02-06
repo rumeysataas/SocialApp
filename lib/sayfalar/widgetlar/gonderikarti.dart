@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sosyal_medya_uygulamasi/models/gonderi.dart';
 import 'package:sosyal_medya_uygulamasi/models/kullanici.dart';
+import 'package:sosyal_medya_uygulamasi/sayfalar/profil.dart';
 import 'package:sosyal_medya_uygulamasi/sayfalar/yorumlar.dart';
 import 'package:sosyal_medya_uygulamasi/services/firestoreservisi.dart';
 import 'package:sosyal_medya_uygulamasi/services/yetkilendirmeservisi.dart';
@@ -60,22 +61,74 @@ class _GonderiKartiState extends State<GonderiKarti> {
     );
   }
 
+  gonderiSecenekleri() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return SimpleDialog(
+            title: Text("Seçiminiz Nedir?"),
+            children: [
+              SimpleDialogOption(
+                child: Text("Gönderiyi Sil"),
+                onPressed: () {
+                  FireStoreServisi().gonderiSil(
+                      aktifKullaniciId: _aktifKullaniciId,
+                      gonderi: widget.gonderi);
+                  Navigator.pop(context);
+                },
+              ),
+              SimpleDialogOption(
+                child: Text(
+                  "Vazgeç",
+                  style: TextStyle(color: Colors.red),
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          );
+        });
+  }
+
   Widget _gonderiBasligi() {
     return ListTile(
       leading: Padding(
         padding: const EdgeInsets.only(left: 12.0),
-        child: CircleAvatar(
-            backgroundColor: Colors.blue,
-            backgroundImage: NetworkImage(widget.yayinlayan.fotoUrl)),
+        child: GestureDetector(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Profil(
+                          profilSahibiId: widget.gonderi.yayinlayanId,
+                        )));
+          },
+          child: CircleAvatar(
+              backgroundColor: Colors.blue,
+              backgroundImage: NetworkImage(widget.yayinlayan.fotoUrl)),
+        ),
       ),
-      title: Text(
-        widget.yayinlayan.kullaniciAdi,
-        style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
+      title: GestureDetector(
+        onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Profil(
+                          profilSahibiId: widget.gonderi.yayinlayanId,
+                        )));
+          },
+        child: Text(
+          widget.yayinlayan.kullaniciAdi,
+          style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
+        ),
       ),
-      trailing: IconButton(
-        icon: Icon(Icons.more_vert),
-        onPressed: () {},
-      ),
+      trailing: _aktifKullaniciId == widget.gonderi.yayinlayanId
+          ? IconButton(
+              icon: Icon(Icons.more_vert),
+              onPressed: () {},
+            )
+          : null,
       contentPadding: EdgeInsets.all(0.0),
     );
   }

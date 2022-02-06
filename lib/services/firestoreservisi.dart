@@ -1,7 +1,9 @@
 //@dart=2.9
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:sosyal_medya_uygulamasi/models/duyuru.dart';
 import 'package:sosyal_medya_uygulamasi/models/gonderi.dart';
 import 'package:sosyal_medya_uygulamasi/models/kullanici.dart';
+import 'package:sosyal_medya_uygulamasi/services/storageservisi.dart';
 
 class FireStoreServisi {
   final Firestore _firestore = Firestore.instance;
@@ -27,6 +29,91 @@ class FireStoreServisi {
     return null;
   }
 
+  void kullaniciGuncelle(
+      {String kullaniciId,
+      String kullaniciAdi,
+      String fotoUrl = "",
+      String hakkinda}) {
+    _firestore.collection("kullanicilar").document(kullaniciId).updateData({
+      "kullaniciAdi": kullaniciAdi,
+      "hakkinda": hakkinda,
+      "fotoUrl": fotoUrl
+    });
+  }
+
+  Future<List<Kullanici>> kullaniciAra(String kelime) async {
+    QuerySnapshot snapshot = await _firestore
+        .collection("kullanicilar")
+        .where("kullaniciAdi", isGreaterThanOrEqualTo: kelime)
+        .getDocuments();
+
+    List<Kullanici> kullanicilar =
+        snapshot.documents.map((doc) => Kullanici.dokumandanUret(doc)).toList();
+    return kullanicilar;
+  }
+
+  void takipEt({String aktifKullaniciId, String profilSahibiId}) {
+    _firestore
+        .collection("takipciler")
+        .document(profilSahibiId)
+        .collection("kullanicininTakipcileri")
+        .document(aktifKullaniciId)
+        .setData({});
+    _firestore
+        .collection("takipedilenler")
+        .document(aktifKullaniciId)
+        .collection("kullanicininTakipleri")
+        .document(profilSahibiId)
+        .setData({});
+
+    //Takip edilen kullanıcıya duyuru gönder
+
+    duyuruEkle(
+        aktiviteTipi: "takip",
+        aktiviteYapanId: aktifKullaniciId,
+        profilSahibiId: profilSahibiId);
+  }
+
+  void takiptenCik({String aktifKullaniciId, String profilSahibiId}) {
+    _firestore
+        .collection("takipciler")
+        .document(profilSahibiId)
+        .collection("kullanicininTakipcileri")
+        .document(aktifKullaniciId)
+        .get()
+        .then((DocumentSnapshot doc) {
+      if (doc.exists) {
+        doc.reference.delete();
+      }
+    });
+
+    _firestore
+        .collection("takipedilenler")
+        .document(aktifKullaniciId)
+        .collection("kullanicininTakipleri")
+        .document(profilSahibiId)
+        .get()
+        .then((DocumentSnapshot doc) {
+      if (doc.exists) {
+        doc.reference.delete();
+      }
+    });
+  }
+
+  Future<bool> takipKontrol(
+      {String aktifKullaniciId, String profilSahibiId}) async {
+    DocumentSnapshot doc = await _firestore
+        .collection("takipedilenler")
+        .document(aktifKullaniciId)
+        .collection("kullanicininTakipleri")
+        .document(profilSahibiId)
+        .get();
+    if (doc.exists) {
+      return true;
+    }
+    return false;
+  }
+
   Future<int> takipciSayisi(kullaniciId) async {
     QuerySnapshot snapshot = await _firestore
         .collection("takipciler")
@@ -45,6 +132,47 @@ class FireStoreServisi {
         .getDocuments();
 
     return snapshot.documents.length;
+  }
+
+  void duyuruEkle(
+      {String aktiviteYapanId,
+      String profilSahibiId,
+      String aktiviteTipi,
+      String yorum,
+      Gonderi gonderi}) {
+    if (aktiviteYapanId == profilSahibiId) {
+      return;
+    }
+    _firestore
+        .collection("duyurular")
+        .document(profilSahibiId)
+        .collection("kullanicininDuyurulari")
+        .add({
+      "aktiviteYapanId": aktiviteYapanId,
+      "aktiviteTipi": aktiviteTipi,
+      "gonderiId": gonderi?.id,
+      "gonderiFoto": gonderi?.gonderiResmiUrl,
+      "yorum": yorum,
+      "olusturulmaZamani": zaman
+    });
+  }
+
+  Future<List<Duyuru>> duyurulariGetir(String profilSahibiId) async {
+    QuerySnapshot snapshot = await _firestore
+        .collection("duyurular")
+        .document(profilSahibiId)
+        .collection("kullanicininDuyurulari")
+        .orderBy("olusturulmaZamani", descending: true)
+        .limit(20)
+        .getDocuments();
+
+    List<Duyuru> duyurular = [];
+
+    snapshot.documents.forEach((DocumentSnapshot doc) {
+      Duyuru duyuru = Duyuru.dokumandanUret(doc);
+      duyurular.add(duyuru);
+    });
+    return duyurular;
   }
 
   Future<void> gonderiOlustur(
@@ -75,6 +203,72 @@ class FireStoreServisi {
     return gonderiler;
   }
 
+  Future<List<Gonderi>> akisGonderileriniGetir(kullaniciId) async {
+    QuerySnapshot snapshot = await _firestore
+        .collection("akislar")
+        .document(kullaniciId)
+        .collection("kullaniciAkisGonderileri")
+        .orderBy("olusturulmaZamani", descending: true)
+        .getDocuments();
+    List<Gonderi> gonderiler =
+        snapshot.documents.map((doc) => Gonderi.dokumandanUret(doc)).toList();
+    return gonderiler;
+  }
+
+  Future<void> gonderiSil({String aktifKullaniciId, Gonderi gonderi}) async {
+    _firestore
+        .collection("gonderiler")
+        .document(aktifKullaniciId)
+        .collection("kullaniciGonderileri")
+        .document(gonderi.id)
+        .get()
+        .then((DocumentSnapshot doc) {
+      if (doc.exists) {
+        doc.reference.delete();
+      }
+    });
+    //Gönderiye ait yorumları siliyoruz
+    QuerySnapshot yorumlarSnapshot = await _firestore
+        .collection("yorumlar")
+        .document(gonderi.id)
+        .collection("gonderiYorumlari")
+        .getDocuments();
+    yorumlarSnapshot.documents.forEach((DocumentSnapshot doc) {
+      if (doc.exists) {
+        doc.reference.delete();
+      }
+    });
+    //Silinen gönderi duyurularının silinmesi
+
+    QuerySnapshot duyurularSnapshot = await _firestore
+        .collection("duyurular")
+        .document(gonderi.yayinlayanId)
+        .collection("kullanicininDuyurulari")
+        .where("gonderiId", isEqualTo: gonderi.id)
+        .getDocuments();
+    duyurularSnapshot.documents.forEach((DocumentSnapshot doc) {
+      if (doc.exists) {
+        doc.reference.delete();
+      }
+    });
+
+    //Storage servisinden gönderi resmini sil
+    StorageServisi().gonderResmiSil(gonderi.gonderiResmiUrl);
+  }
+
+  Future<Gonderi> tekliGonderiGetir(
+      String gonderiId, String gonderiSahibiId) async {
+    DocumentSnapshot doc = await _firestore
+        .collection("gonderileri")
+        .document(gonderiSahibiId)
+        .collection("kullaniciGonderileri")
+        .document(gonderiId)
+        .get();
+
+    Gonderi gonderi = Gonderi.dokumandanUret(doc);
+    return gonderi;
+  }
+
   Future<void> gonderiBegen(Gonderi gonderi, String aktifKullaniciId) async {
     DocumentReference docRef = _firestore
         .collection("gonderiler")
@@ -94,6 +288,12 @@ class FireStoreServisi {
           .document(aktifKullaniciId)
           .setData({});
     }
+
+    duyuruEkle(
+        aktiviteTipi: "begeni",
+        aktiviteYapanId: aktifKullaniciId,
+        gonderi: gonderi,
+        profilSahibiId: gonderi.yayinlayanId);
   }
 
   Future<void> gonderiBegeniKaldir(
@@ -155,5 +355,12 @@ class FireStoreServisi {
       "yayinlayanId": aktifKullaniciId,
       "olusturulmaZamani": zaman
     });
+
+    duyuruEkle(
+        aktiviteTipi: "yorum",
+        aktiviteYapanId: aktifKullaniciId,
+        gonderi: gonderi,
+        profilSahibiId: gonderi.yayinlayanId,
+        yorum: icerik);
   }
 }

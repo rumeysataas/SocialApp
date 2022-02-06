@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sosyal_medya_uygulamasi/models/kullanici.dart';
 import 'package:sosyal_medya_uygulamasi/sayfalar/hesapolustur.dart';
+import 'package:sosyal_medya_uygulamasi/sayfalar/sifremiUnuttum.dart';
 import 'package:sosyal_medya_uygulamasi/services/firestoreservisi.dart';
 import 'package:sosyal_medya_uygulamasi/services/yetkilendirmeservisi.dart';
 
@@ -154,7 +155,15 @@ class _GirisSayfasiState extends State<GirisSayfasi> {
           SizedBox(
             height: 20.0,
           ),
-          Center(child: Text("Şifremi unuttum")),
+          Center(
+              child: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SifremiUnuttum()));
+                  },
+                  child: Text("Şifremi unuttum"))),
         ],
       ),
     );
