@@ -1,0 +1,204 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.sosyal_medya_uygulamasi"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="16"
+9        android:targetSdkVersion="31" />
+10    <!--
+11         Flutter needs it to communicate with the running application
+12         to allow setting breakpoints, to provide hot reload, etc.
+13    -->
+14    <uses-permission android:name="android.permission.INTERNET" />
+14-->C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\android\app\src\debug\AndroidManifest.xml:6:5-66
+14-->C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\android\app\src\debug\AndroidManifest.xml:6:22-64
+15    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+15-->[:image_picker] C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-80
+15-->[:image_picker] C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:7:22-77
+16    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
+16-->[:image_picker] C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-81
+16-->[:image_picker] C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:8:22-78
+17    <!-- <uses-sdk android:minSdkVersion="14"/> -->
+18    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+18-->[com.google.firebase:firebase-storage:17.0.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\a6918c7446c410f56258c7e74016b84b\jetified-firebase-storage-17.0.0\AndroidManifest.xml:26:5-79
+18-->[com.google.firebase:firebase-storage:17.0.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\a6918c7446c410f56258c7e74016b84b\jetified-firebase-storage-17.0.0\AndroidManifest.xml:26:22-76
+19
+20    <application
+21        android:name="android.app.Application"
+22        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+22-->[androidx.core:core:1.6.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\8ec5a4192b12a309556d408337153575\core-1.6.0\AndroidManifest.xml:24:18-86
+23        android:debuggable="true"
+24        android:icon="@mipmap/ic_launcher"
+25        android:label="sosyal_medya_uygulamasi" >
+26        <activity
+27            android:name="com.example.sosyal_medya_uygulamasi.MainActivity"
+28            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+29            android:exported="true"
+30            android:hardwareAccelerated="true"
+31            android:launchMode="singleTop"
+32            android:theme="@style/LaunchTheme"
+33            android:windowSoftInputMode="adjustResize" >
+34
+35            <!--
+36                 Specifies an Android theme to apply to this Activity as soon as
+37                 the Android process has started. This theme is visible to the user
+38                 while the Flutter UI initializes. After that, this theme continues
+39                 to determine the Window background behind the Flutter UI.
+40            -->
+41            <meta-data
+42                android:name="io.flutter.embedding.android.NormalTheme"
+43                android:resource="@style/NormalTheme" />
+44
+45            <intent-filter>
+46                <action android:name="android.intent.action.MAIN" />
+47
+48                <category android:name="android.intent.category.LAUNCHER" />
+49            </intent-filter>
+50        </activity>
+51        <!--
+52             Don't delete the meta-data below.
+53             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+54        -->
+55        <meta-data
+56            android:name="flutterEmbedding"
+57            android:value="2" />
+58
+59        <service
+59-->[:cloud_firestore] C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+60            android:name="com.google.firebase.components.ComponentDiscoveryService"
+60-->[:cloud_firestore] C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:18-89
+61            android:directBootAware="true"
+61-->[com.google.firebase:firebase-common:19.3.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\7703ca5b88400769c9fad35f6220c81c\jetified-firebase-common-19.3.0\AndroidManifest.xml:34:13-43
+62            android:exported="false" >
+62-->[com.google.firebase:firebase-auth:19.2.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\b46740e61f89b6c1c2b1cf1458ff344a\jetified-firebase-auth-19.2.0\AndroidManifest.xml:35:13-37
+63            <meta-data
+63-->[:cloud_firestore] C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+64                android:name="com.google.firebase.components:io.flutter.plugins.firebase.cloudfirestore.FlutterFirebaseAppRegistrar"
+64-->[:cloud_firestore] C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-133
+65                android:value="com.google.firebase.components.ComponentRegistrar" />
+65-->[:cloud_firestore] C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+66            <meta-data
+66-->[:firebase_auth] C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+67                android:name="com.google.firebase.components:io.flutter.plugins.firebaseauth.FlutterFirebaseAppRegistrar"
+67-->[:firebase_auth] C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-122
+68                android:value="com.google.firebase.components.ComponentRegistrar" />
+68-->[:firebase_auth] C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+69            <meta-data
+69-->[:firebase_storage] C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+70                android:name="com.google.firebase.components:io.flutter.plugins.firebase.storage.FlutterFirebaseAppRegistrar"
+70-->[:firebase_storage] C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-126
+71                android:value="com.google.firebase.components.ComponentRegistrar" />
+71-->[:firebase_storage] C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+72            <meta-data
+72-->[:firebase_core] C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+73                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseAppRegistrar"
+73-->[:firebase_core] C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-123
+74                android:value="com.google.firebase.components.ComponentRegistrar" />
+74-->[:firebase_core] C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+75            <meta-data
+75-->[com.google.firebase:firebase-auth:19.2.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\b46740e61f89b6c1c2b1cf1458ff344a\jetified-firebase-auth-19.2.0\AndroidManifest.xml:36:13-38:85
+76                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+76-->[com.google.firebase:firebase-auth:19.2.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\b46740e61f89b6c1c2b1cf1458ff344a\jetified-firebase-auth-19.2.0\AndroidManifest.xml:37:17-109
+77                android:value="com.google.firebase.components.ComponentRegistrar" />
+77-->[com.google.firebase:firebase-auth:19.2.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\b46740e61f89b6c1c2b1cf1458ff344a\jetified-firebase-auth-19.2.0\AndroidManifest.xml:38:17-82
+78            <meta-data
+78-->[com.google.firebase:firebase-storage:17.0.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\a6918c7446c410f56258c7e74016b84b\jetified-firebase-storage-17.0.0\AndroidManifest.xml:31:13-33:85
+79                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
+79-->[com.google.firebase:firebase-storage:17.0.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\a6918c7446c410f56258c7e74016b84b\jetified-firebase-storage-17.0.0\AndroidManifest.xml:32:17-107
+80                android:value="com.google.firebase.components.ComponentRegistrar" />
+80-->[com.google.firebase:firebase-storage:17.0.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\a6918c7446c410f56258c7e74016b84b\jetified-firebase-storage-17.0.0\AndroidManifest.xml:33:17-82
+81            <meta-data
+81-->[com.google.firebase:firebase-firestore:21.3.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\e562c823a85763e642c7b6278b0d17ae\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:20:13-22:85
+82                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+82-->[com.google.firebase:firebase-firestore:21.3.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\e562c823a85763e642c7b6278b0d17ae\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:21:17-111
+83                android:value="com.google.firebase.components.ComponentRegistrar" />
+83-->[com.google.firebase:firebase-firestore:21.3.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\e562c823a85763e642c7b6278b0d17ae\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:22:17-82
+84        </service>
+85
+86        <provider
+86-->[:image_picker] C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:11:9-19:20
+87            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+87-->[:image_picker] C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-82
+88            android:authorities="com.example.sosyal_medya_uygulamasi.flutter.image_provider"
+88-->[:image_picker] C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-74
+89            android:exported="false"
+89-->[:image_picker] C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-37
+90            android:grantUriPermissions="true" >
+90-->[:image_picker] C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-47
+91            <meta-data
+91-->[:image_picker] C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-18:75
+92                android:name="android.support.FILE_PROVIDER_PATHS"
+92-->[:image_picker] C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:17:17-67
+93                android:resource="@xml/flutter_image_picker_file_paths" />
+93-->[:image_picker] C:\Users\tasru\AndroidStudioProjects\sosyal_medya_uygulamasi\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:18:17-72
+94        </provider>
+95
+96        <activity
+96-->[com.google.firebase:firebase-auth:19.2.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\b46740e61f89b6c1c2b1cf1458ff344a\jetified-firebase-auth-19.2.0\AndroidManifest.xml:24:9-31:50
+97            android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
+97-->[com.google.firebase:firebase-auth:19.2.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\b46740e61f89b6c1c2b1cf1458ff344a\jetified-firebase-auth-19.2.0\AndroidManifest.xml:25:13-85
+98            android:excludeFromRecents="true"
+98-->[com.google.firebase:firebase-auth:19.2.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\b46740e61f89b6c1c2b1cf1458ff344a\jetified-firebase-auth-19.2.0\AndroidManifest.xml:26:13-46
+99            android:exported="true"
+99-->[com.google.firebase:firebase-auth:19.2.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\b46740e61f89b6c1c2b1cf1458ff344a\jetified-firebase-auth-19.2.0\AndroidManifest.xml:27:13-36
+100            android:launchMode="singleTask"
+100-->[com.google.firebase:firebase-auth:19.2.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\b46740e61f89b6c1c2b1cf1458ff344a\jetified-firebase-auth-19.2.0\AndroidManifest.xml:28:13-44
+101            android:permission="com.google.firebase.auth.api.gms.permission.LAUNCH_FEDERATED_SIGN_IN"
+101-->[com.google.firebase:firebase-auth:19.2.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\b46740e61f89b6c1c2b1cf1458ff344a\jetified-firebase-auth-19.2.0\AndroidManifest.xml:29:13-102
+102            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+102-->[com.google.firebase:firebase-auth:19.2.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\b46740e61f89b6c1c2b1cf1458ff344a\jetified-firebase-auth-19.2.0\AndroidManifest.xml:30:13-72
+103
+104        <provider
+104-->[com.google.firebase:firebase-common:19.3.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\7703ca5b88400769c9fad35f6220c81c\jetified-firebase-common-19.3.0\AndroidManifest.xml:26:9-30:39
+105            android:name="com.google.firebase.provider.FirebaseInitProvider"
+105-->[com.google.firebase:firebase-common:19.3.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\7703ca5b88400769c9fad35f6220c81c\jetified-firebase-common-19.3.0\AndroidManifest.xml:27:13-77
+106            android:authorities="com.example.sosyal_medya_uygulamasi.firebaseinitprovider"
+106-->[com.google.firebase:firebase-common:19.3.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\7703ca5b88400769c9fad35f6220c81c\jetified-firebase-common-19.3.0\AndroidManifest.xml:28:13-72
+107            android:exported="false"
+107-->[com.google.firebase:firebase-common:19.3.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\7703ca5b88400769c9fad35f6220c81c\jetified-firebase-common-19.3.0\AndroidManifest.xml:29:13-37
+108            android:initOrder="100" />
+108-->[com.google.firebase:firebase-common:19.3.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\7703ca5b88400769c9fad35f6220c81c\jetified-firebase-common-19.3.0\AndroidManifest.xml:30:13-36
+109
+110        <activity
+110-->[com.google.android.gms:play-services-auth:16.0.1] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\6c8dd20a7444c1e4feeee3337fc99ff5\jetified-play-services-auth-16.0.1\AndroidManifest.xml:23:9-27:75
+111            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+111-->[com.google.android.gms:play-services-auth:16.0.1] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\6c8dd20a7444c1e4feeee3337fc99ff5\jetified-play-services-auth-16.0.1\AndroidManifest.xml:24:13-93
+112            android:excludeFromRecents="true"
+112-->[com.google.android.gms:play-services-auth:16.0.1] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\6c8dd20a7444c1e4feeee3337fc99ff5\jetified-play-services-auth-16.0.1\AndroidManifest.xml:25:13-46
+113            android:exported="false"
+113-->[com.google.android.gms:play-services-auth:16.0.1] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\6c8dd20a7444c1e4feeee3337fc99ff5\jetified-play-services-auth-16.0.1\AndroidManifest.xml:26:13-37
+114            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+114-->[com.google.android.gms:play-services-auth:16.0.1] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\6c8dd20a7444c1e4feeee3337fc99ff5\jetified-play-services-auth-16.0.1\AndroidManifest.xml:27:13-72
+115        <!--
+116            Service handling Google Sign-In user revocation. For apps that do not integrate with
+117            Google Sign-In, this service will never be started.
+118        -->
+119        <service
+119-->[com.google.android.gms:play-services-auth:16.0.1] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\6c8dd20a7444c1e4feeee3337fc99ff5\jetified-play-services-auth-16.0.1\AndroidManifest.xml:33:9-36:110
+120            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+120-->[com.google.android.gms:play-services-auth:16.0.1] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\6c8dd20a7444c1e4feeee3337fc99ff5\jetified-play-services-auth-16.0.1\AndroidManifest.xml:34:13-89
+121            android:exported="true"
+121-->[com.google.android.gms:play-services-auth:16.0.1] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\6c8dd20a7444c1e4feeee3337fc99ff5\jetified-play-services-auth-16.0.1\AndroidManifest.xml:35:13-36
+122            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION" />
+122-->[com.google.android.gms:play-services-auth:16.0.1] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\6c8dd20a7444c1e4feeee3337fc99ff5\jetified-play-services-auth-16.0.1\AndroidManifest.xml:36:13-107
+123
+124        <activity
+124-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\0813e45a0b3806629b40dbeb70c75a60\jetified-play-services-base-17.1.0\AndroidManifest.xml:23:9-26:75
+125            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+125-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\0813e45a0b3806629b40dbeb70c75a60\jetified-play-services-base-17.1.0\AndroidManifest.xml:24:13-79
+126            android:exported="false"
+126-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\0813e45a0b3806629b40dbeb70c75a60\jetified-play-services-base-17.1.0\AndroidManifest.xml:25:13-37
+127            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+127-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\0813e45a0b3806629b40dbeb70c75a60\jetified-play-services-base-17.1.0\AndroidManifest.xml:26:13-72
+128
+129        <meta-data
+129-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\e31537fb3ca3accaea0d4d9ddb9631cc\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+130            android:name="com.google.android.gms.version"
+130-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\e31537fb3ca3accaea0d4d9ddb9631cc\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+131            android:value="@integer/google_play_services_version" />
+131-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\tasru\.gradle\caches\transforms-2\files-2.1\e31537fb3ca3accaea0d4d9ddb9631cc\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+132    </application>
+133
+134</manifest>
